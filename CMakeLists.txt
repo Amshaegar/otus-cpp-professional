@@ -7,10 +7,10 @@ project(helloworld VERSION ${PROJECT_VESRION})
 
 option(WITH_BOOST_TEST "Whether to build Boost test" ON)
 
-configure_file(version.h.in version.h)
+configure_file(version/version.h.in version/version.h)
 
 add_executable(helloworld_cli main.cpp)
-add_library(helloworld lib.cpp)
+add_library(helloworld version/lib.cpp)
 
 set_target_properties(helloworld_cli helloworld PROPERTIES
     CXX_STANDARD 14
@@ -23,6 +23,10 @@ target_include_directories(helloworld
 
 target_link_libraries(helloworld_cli PRIVATE
     helloworld
+)
+
+target_include_directories(helloworld_cli
+    PRIVATE "version"
 )
 
 if(WITH_BOOST_TEST)
@@ -42,6 +46,10 @@ if(WITH_BOOST_TEST)
     target_link_libraries(test_version
         ${Boost_LIBRARIES}
         helloworld
+    )
+
+    target_include_directories(test_version
+        PRIVATE "version"
     )
 endif()
 
