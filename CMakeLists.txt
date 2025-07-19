@@ -31,7 +31,7 @@ target_include_directories(helloworld_cli
 
 if(WITH_BOOST_TEST)
     find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-    add_executable(test_version test_version.cpp)
+    add_executable(test_version tests/test_version.cpp)
 
     set_target_properties(test_version PROPERTIES
         CXX_STANDARD 14
