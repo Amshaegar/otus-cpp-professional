@@ -12,6 +12,8 @@ FetchContent_MakeAvailable(googletest)
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 add_executable(tests
+    "${CMAKE_CURRENT_SOURCE_DIR}/../src/util.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../src/ip_filter.cpp"
     tests.cpp
     main.cpp
 )
@@ -24,6 +26,7 @@ set_target_properties(tests PROPERTIES
 target_include_directories(
     tests PRIVATE
     "${CMAKE_CURRENT_SOURCE_DIR}/../version"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../src"
 )
 
 target_link_libraries(tests PRIVATE gtest)
