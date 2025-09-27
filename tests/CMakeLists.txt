@@ -12,8 +12,14 @@ FetchContent_MakeAvailable(googletest)
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 add_executable(tests
-    tests.cpp
+    "${CMAKE_CURRENT_SOURCE_DIR}/../src/Processor.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../src/Processor.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../src/CoutOutputGenerator.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../src/CoutOutputGenerator.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../src/FileOutputGenerator.hpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../src/FileOutputGenerator.cpp"
     main.cpp
+    tests.cpp
 )
 
 set_target_properties(tests PROPERTIES
@@ -23,6 +29,7 @@ set_target_properties(tests PROPERTIES
 
 target_include_directories(
     tests PRIVATE
+    "${CMAKE_CURRENT_SOURCE_DIR}/../src"
     "${CMAKE_CURRENT_SOURCE_DIR}/../version"
 )
 
