@@ -22,6 +22,10 @@ public:
     void generateReport(const ProcessorResult& result) override {
         processorResults.push_back(result);
     }
+
+    IOutputGenerator::Type type() override {
+        return IOutputGenerator::Type::Test;
+    }
 };
 
 std::vector<ProcessorResult> TestOutputGenerator::processorResults;
