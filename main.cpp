@@ -16,12 +16,13 @@ int main(int argc, char *argv[]) {
 
     int N = std::stoi(argv[1]);
 
-    TimeProvider testTimeProvider;
+    TimeProvider timeProvider;
     auto outputGenerators = std::make_unique<std::vector<std::unique_ptr<IOutputGenerator>>>();
     outputGenerators->emplace_back(std::make_unique<CoutOutputGenerator>());
     outputGenerators->emplace_back(std::make_unique<FileOutputGenerator>());
+    outputGenerators->emplace_back(std::make_unique<FileOutputGenerator>());
 
-    Processor processor(N, std::move(outputGenerators), &testTimeProvider);
+    Processor processor(N, std::move(outputGenerators), &timeProvider);
 
     std::string input;
     while(std::getline(std::cin, input)) {

@@ -5,6 +5,8 @@ set(PROJECT_VERSION 0.0.${PATCH_VERSION})
 set(PROJECT_NAME "bulk")
 project(${PROJECT_NAME} VERSION ${PROJECT_VERSION})
 
+find_package(Threads REQUIRED)
+
 configure_file(version/version.h.in version/version.h)
 
 option(BUILD_TESTS "Whether to build tests" ON)
@@ -47,6 +49,7 @@ if (MSVC)
     target_compile_options(${PROJECT_NAME} PUBLIC /W4 /WX)
 else()
     target_compile_options(${PROJECT_NAME} PUBLIC -Wall -Wextra -Werror -pedantic)
+    target_link_libraries(${PROJECT_NAME} PUBLIC Threads::Threads)
 endif()
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION bin)

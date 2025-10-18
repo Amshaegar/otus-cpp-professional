@@ -11,6 +11,8 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(googletest)
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
+find_package(Threads REQUIRED)
+
 add_executable(tests
     "${CMAKE_CURRENT_SOURCE_DIR}/../src/Command.cpp"
     "${CMAKE_CURRENT_SOURCE_DIR}/../src/Command.hpp"
@@ -42,4 +44,5 @@ if (MSVC)
     target_compile_options(tests PUBLIC /W4 /WX)
 else()
     target_compile_options(tests PUBLIC -Wall -Wextra -Werror -pedantic)
+    target_link_libraries(${PROJECT_NAME} PUBLIC Threads::Threads)
 endif()
